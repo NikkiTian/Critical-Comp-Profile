@@ -1,0 +1,6 @@
+html, body {
+  font-family: "Space Grotesk", serif;
+}
+canvas {
+  display: block;
+}

@@ -1,0 +1,7 @@
+////////Nikki Tian
+I decided last class that I would make something with lines. I didn't exactly drew a full sketch of my face becuase drawing the face in live in p5 would be much straightforward. I created this thing along the way.
+This is my first attempt on doing abstract things, and it was PRETTY hard.
+First I came up with the idea of drawing shapes through lines. So I created a function defining how the line is drawn for the face, using a lot of random() functions.
+I had a hard time tring to figure out the way to construct ellipses in lines so I referenced GPT for that part.
+I used map() to create a tracking effect on the eyes, while also referencing GPT for line construction of the ellipse.I'm glad that I sticked onto my initial idea that to create my image through lines.
+Lastly I spent a lot effort on determenting when the shape should appear and how. At first I used noLoop() and reDraw() to let the face stay onto the screen at all times but eventually I chose mouseDragged() to make the form more dynamic.
