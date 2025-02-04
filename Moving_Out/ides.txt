@@ -1,0 +1,40 @@
+
+小区楼下：开场，故事交代
+    可交互：楼梯
+    
+我的一只拖鞋找不到了。
+    
+卧室：床的视角 
+    可交互：床 -> 顶灯视角【关掉蝉鸣】小睡了一会；
+            植物 -> 发财树，“表姐结婚的时候送的。之后一直放在这里，我从来没有管他，但是他好像也从来没有要枯萎的迹象。”
+            床头的挂画 -> 全家福【拼图】
+            阿贝贝 -> 长江七号玩偶【对视】，玩偶身上脱线，棉花露出来了。
+            书桌 -> 【进入书桌】
+卧室：书桌的视角
+    可交互：电脑 -> 【扫雷】
+            铅笔盒 -> 【拖拽排序】把铅笔从矮排到高
+            套圈游戏机 -> 【按压投圈】，计分形式，得到【针线包】
+            书桌 -> 因为外面就是阳台的缘故，书桌上总是会出现一列一列的蚂蚁。【画一个圈把蚂蚁套住】
+    
+卧室：床的视角 
+    用【针线包】和阿贝贝讲话，暗示天快黑了，下楼该走了
+////////////////////////////////////////
+Downstairs in the neighborhood: opening, story explanation
+Interactable: stairs
+
+I couldn't find one of my slippers.
+
+Bedroom: bed perspective 
+Interactable: bed -> overhead light view [turns off cicadas] Taking a nap;
+Plant -> Fortune tree, “A gift from my cousin when she got married. It's been sitting here ever since, and I've never cared for him, but he never seems to be about to wilt either.”
+Hanging picture above the bed -> All in the Family [Jigsaw Puzzle
+Doll -> CJ7 Doll [Looking at each other], the threads are off the doll and the cotton is showing.
+Desk -> [enters desk
+Bedroom: view of the desk
+Interactable: Computer -> [Minesweeper
+Pencil Box -> [Drag and Drop to Sort] Arrange pencils from short to tall
+Lasso Game Machine -> [Press to Throw Circle], scoring form, get [Needle and Thread Bag].
+Desk -> Because there is a balcony outside, there are always columns and columns of ants on the desk. [Draw a circle to trap the ants]
+
+Bedroom: Bed view 
+Use [Needle and Thread Bag] to talk to the doll, implying that it's getting dark and it's time to go downstairs
