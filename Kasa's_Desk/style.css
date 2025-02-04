@@ -1,6 +1,19 @@
 html, body {
   font-family: "Space Grotesk", serif;
+  background-image: url('../images/treeBG.png');
+  margin: 0;
+  padding: 0;
 }
+
+.highlight_normalText {
+  background-color: yellow;
+  padding: 2px 4px;
+  width: 800px;
+  /* display: block; */
+  text-decoration: none;
+  color: black; */
+}
+
 canvas {
   display: block;
 }

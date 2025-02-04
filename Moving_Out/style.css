@@ -1,4 +1,6 @@
 html, body {
+  font-family: "Space Grotesk", serif;
+  background-image: url('../images/treeBG.png');
   margin: 0;
   padding: 0;
 }

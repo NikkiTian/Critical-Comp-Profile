@@ -63,3 +63,17 @@ p{
     color: white;
     text-align: center;
 }
+  
+  #corner-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 30%;
+  }
+  
+  #corner-image img {
+    width: 100%;
+    height: auto;
+  }
