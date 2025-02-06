@@ -88,20 +88,6 @@ p{
     text-align: center;
   }
 
-  .overlay-text{
-    position:relative;
-    color: red;
-    margin: -80px 20px;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    display: none;
-  }
-
-  .overlay-grid:hover .overlay-text {
-    display: block;
-  }
-
   .image-item {
     width: 100%;
     height: 100%;
