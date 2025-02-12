@@ -16,14 +16,14 @@ function setup() {
   noStroke();
   
   let sampleFactorf = 0.2
-  let textSize = 120;
+  let textSize = 150;
   let a=250;
   
-  firstArray = myFont.textToPoints(level12, 40,200,textSize,{sampleFactor:sampleFactorf});
-  secondArray = myFont.textToPoints(level34, 420,200,textSize,{sampleFactor:sampleFactorf});
-  thirdArray = myFont.textToPoints(level5, 800,200,textSize,{sampleFactor:sampleFactorf});
-  forthArray = myFont.textToPoints(level6, 40,500,textSize,{sampleFactor:sampleFactorf});
-  fifthArray = myFont.textToPoints(level7, 40,700,textSize,{sampleFactor:sampleFactorf});
+  firstArray = myFont.textToPoints(level12, 100,250,textSize,{sampleFactor:sampleFactorf});
+  secondArray = myFont.textToPoints(level34, 450,250,textSize,{sampleFactor:sampleFactorf});
+  thirdArray = myFont.textToPoints(level5, 800,250,textSize,{sampleFactor:sampleFactorf});
+  forthArray = myFont.textToPoints(level6, 100,450,textSize,{sampleFactor:sampleFactorf});
+  fifthArray = myFont.textToPoints(level7, 100,650,textSize,{sampleFactor:sampleFactorf});
 
 /////////////////////////////////////first word: egg
   for(let i=0;i<firstArray.length;i++){
@@ -34,9 +34,9 @@ function setup() {
 
     a-=a/firstArray.length
   }
-/////////////////////////////////////second word: aand
+/////////////////////////////////////second word: and
   for(let i=0;i<secondArray.length;i++){
-  let shapeSize = map(secondArray[i].y, 40, 120, 2, 7)
+  let shapeSize = map(secondArray[i].y, 170, 270, 4, 8)
   fill("blue")
   if(i<secondArray.length/2){
     fill("rgb(0,226,0)")
@@ -58,12 +58,12 @@ function setup() {
 }
 
   let t = 0;
-
+/////////////////////live update from now
   function draw() {
     fill("blue")
     push()
     fill("yellow")
-    rect(0,300,600,300)
+    rect(0,300,1200,600)
     pop()
     console.log(mouseX,mouseY)
 /////////////////////////////////////forth word: for
@@ -83,7 +83,7 @@ function setup() {
 
     let distToMouse = dist(posX, posY, mouseX, mouseY);
 
-    let shapeSize = map(distToMouse, 0,50, 10,3, true);
+    let shapeSize = map(distToMouse, 0,50, 12,4, true);
     
     circle(fifthArray[i].x,fifthArray[i].y,shapeSize);
   }
