@@ -71,7 +71,7 @@ function setup() {
 /////////////////////////////////////forth word: for
   for(let i=0;i<forthArray.length;i++){
     let shapeSize =5;
-    let offset = sin(t + i * 0.2)*2;
+    let offset = sin(t + forthArray[i].x * 0.05)*2;
     
     circle(forthArray[i].x,forthArray[i].y+offset,shapeSize);
   }
