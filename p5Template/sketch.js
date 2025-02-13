@@ -49,11 +49,12 @@ function setup() {
     let shapeSize =5;
     if(i%2==0){
       fill("blue");
+      circle(thirdArray[i].x,thirdArray[i].y,shapeSize);
     }
     else{
       fill("rgb(0,226,0)");
+      square(thirdArray[i].x,thirdArray[i].y,shapeSize);
     }
-    circle(thirdArray[i].x,thirdArray[i].y,shapeSize);
   }
 }
 
