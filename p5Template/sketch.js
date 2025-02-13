@@ -46,6 +46,7 @@ function setup() {
   
 /////////////////////////////////////third word: milk
   for(let i=0;i<thirdArray.length;i++){
+    rectMode(CENTER);
     let shapeSize =5;
     if(i%2==0){
       fill("blue");
@@ -64,7 +65,7 @@ function setup() {
     fill("blue")
     push()
     fill("yellow")
-    rect(0,300,1200,600)
+    rect(300,600,1200,600)
     pop()
     console.log(mouseX,mouseY)
 /////////////////////////////////////forth word: for
