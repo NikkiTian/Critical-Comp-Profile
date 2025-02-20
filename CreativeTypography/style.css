@@ -1,5 +1,8 @@
-html, body {
+*{
     font-family: "Space Grotesk", serif;
+}
+
+html, body {
     background-image: url('../images/treeBG.png');
     margin: 0;
     padding: 0;
@@ -28,3 +31,24 @@ html, body {
     display: block;
   }
   
+  .highlight_hyperlink {
+    background-color: blue;
+    padding: 2px 4px;
+    text-decoration: none;
+    color: white;
+}
+
+.highlight_normalText {
+    background-color: yellow;
+    padding: 2px 4px;
+    width: fit-content;
+    /* display: block; */
+    text-decoration: none;
+    color: black;
+}
+
+.highlight_hyperlink:hover {
+    background-color: greenyellow;
+    color: red;
+    filter:blur(1px);
+}

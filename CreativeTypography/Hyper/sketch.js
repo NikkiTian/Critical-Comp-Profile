@@ -1,7 +1,7 @@
 let font;
 
 function preload() {
-  font = loadFont("Fonts/LeagueScript-Regular.ttf");
+  font = loadFont("../Fonts/LeagueScript-Regular.ttf");
 }
 
 function setup() {
