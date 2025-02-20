@@ -14,7 +14,9 @@ function setup() {
 }
 
 function draw() {
-  background("rgb(0,0,177)");
+  //background("rgb(0,0,177)");
+
+  clear();
 
   text1.update1();
   text1.display();
@@ -81,13 +83,11 @@ class FatigueEffect {
         1.5,
         0.5
       );
-
+      push();
       fill("rgb(0,0,0)");
       stroke("blue");
       strokeWeight(0.3);
-
       ////stacking rectangles. i decided to stack 3 rectangles on each dots
-      push();
       translate(this.points[i].x, this.points[i].y);
       for (let i = 0; i < 3; i++) {
         let size = scale * 5;
@@ -135,7 +135,9 @@ class FatigueEffect {
   }
 
   display() {
+    push();
     fill("rgb(0,255,223)");
+    pop();
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
       rect(this.points[i].x, this.points[i].y, 3);
@@ -143,7 +145,9 @@ class FatigueEffect {
   }
 
   display2() {
+    push();
     fill("rgb(0,255,223)");
+    pop();
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
       rect(this.points[i].x, this.points[i].y, 6, 2);
@@ -152,7 +156,9 @@ class FatigueEffect {
 
   ////added display3() since i have a differrent sample factor for the third iteration
   display3() {
+    push();
     fill("rgb(0,255,223)");
+    pop();
     noStroke();
     // for (let i = 0; i < this.pointsThree.length; i++) {
     //   rect(this.pointsThree[i].x, this.pointsThree[i].y, 3);

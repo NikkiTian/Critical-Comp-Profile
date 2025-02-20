@@ -16,7 +16,8 @@ function setup() {
 }
 
 function draw() {
-  background(70,17,17);
+  // background(70,17,17);
+  clear()
 
   text1.update1();
   text1.display();
@@ -107,7 +108,7 @@ class FatigueEffect {
 
   display() {
     ////this combo makes the texts light up
-    fill("white");
+    fill("black");
     // stroke("grey");
     // strokeWeight(0.5);
     noStroke()
