@@ -8,9 +8,9 @@ function setup() {
   createCanvas(600, 600);
   textAlign(CENTER, CENTER);
 
-  text1 = new FatigueEffect("Fatigue", width / 2 - 50, 150);
-  text2 = new FatigueEffect("Fatigue", width / 2 - 50, 300);
-  text3 = new FatigueEffect("Fatigue", width / 2 - 50, 450);
+  text1 = new HyperEffect("Fatigue", width / 2 - 50, 150);
+  text2 = new HyperEffect("Fatigue", width / 2 - 50, 300);
+  text3 = new HyperEffect("Fatigue", width / 2 - 50, 450);
 }
 
 function draw() {
@@ -26,7 +26,7 @@ function draw() {
   text3.display();
 }
 
-class FatigueEffect {
+class HyperEffect {
   constructor(txt, x, y) {
     this.txt = txt;
     this.x = x;

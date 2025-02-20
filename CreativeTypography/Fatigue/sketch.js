@@ -108,7 +108,7 @@ class FatigueEffect {
 
   display() {
     ////this combo makes the texts light up
-    fill("black");
+    fill("rgb(82, 19, 19)");
     // stroke("grey");
     // strokeWeight(0.5);
     noStroke()

@@ -8,9 +8,9 @@ function setup() {
   createCanvas(600, 600);
   textAlign(CENTER, CENTER);
 
-  text1 = new FatigueEffect("Stranded", width / 2 - 150, 150);
-  text2 = new FatigueEffect("Stranded", width / 2 - 150, 320);
-  text3 = new FatigueEffect("Stranded", width / 2 - 150, 500);
+  text1 = new StrandedEffect("Stranded", width / 2 - 150, 150);
+  text2 = new StrandedEffect("Stranded", width / 2 - 150, 320);
+  text3 = new StrandedEffect("Stranded", width / 2 - 150, 500);
 }
 
 function draw() {
@@ -28,7 +28,7 @@ function draw() {
   text3.display3();
 }
 
-class FatigueEffect {
+class StrandedEffect {
   constructor(txt, x, y) {
     this.txt = txt;
     this.x = x;
@@ -72,9 +72,6 @@ class FatigueEffect {
   update2() {
     ////creating a 3d-like rectangle stacks
     for (let i = 0; i < this.points.length; i++) {
-      let xDist = this.points[i].x - width / 2;
-      let yDist = this.points[i].y - height / 2;
-
       ////scalling blocks based on perspective
       let scale = map(
         dist(this.points[i].x, this.points[i].y, width / 2, height / 2),
@@ -108,8 +105,8 @@ class FatigueEffect {
       
       //// connecting each point though lines. There are some lines out of place for the design of this font, but i think they look good on this
       push();
-      stroke("rgb(0,255,223)");
-      strokeWeight(2);
+      stroke("black");
+      strokeWeight(2.5);
       line(currentX, currentY, nextX, nextY);
       pop();
       
@@ -136,32 +133,32 @@ class FatigueEffect {
 
   display() {
     push();
-    fill("rgb(0,255,223)");
-    pop();
+    fill("rgb(0, 0, 0)");
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
       rect(this.points[i].x, this.points[i].y, 3);
     }
+    pop();
   }
 
   display2() {
     push();
-    fill("rgb(0,255,223)");
-    pop();
+    fill("rgb(255, 255, 255)");
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
       rect(this.points[i].x, this.points[i].y, 6, 2);
     }
+    pop();
   }
 
   ////added display3() since i have a differrent sample factor for the third iteration
   display3() {
     push();
     fill("rgb(0,255,223)");
-    pop();
     noStroke();
     // for (let i = 0; i < this.pointsThree.length; i++) {
     //   rect(this.pointsThree[i].x, this.pointsThree[i].y, 3);
     // }
+    pop();
   }
 }
