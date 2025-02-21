@@ -16,15 +16,22 @@ function setup() {
 function draw() {
   //background("black");
   clear();
+  push();
+  fill("yellow");
+  stroke("red");
+  strokeWeight(4);
+  textSize(20);
+  text("click", 550, 550);
+  pop();
 
   text1.update1();
   //text1.display();
 
   text2.update2();
-  text2.display();
+  //text2.display();
 
   text3.update3();
-  text3.display3();
+  //text3.display3();
 }
 
 class HyperEffect {
@@ -38,10 +45,12 @@ class HyperEffect {
 
     this.originalX = [];
     this.originalY = [];
+
     for (let i = 0; i < this.points.length; i++) {
       this.originalX.push(this.points[i].x);
       this.originalY.push(this.points[i].y);
     }
+
     //// for update1(). got this format online, to replicate each content of the target array
     this.tempX = [...this.originalX];
     this.tempY = [...this.originalY];
@@ -57,16 +66,51 @@ class HyperEffect {
     }
 
     ////draw the shape
-    fill("rgb(204,15,15)");
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
-      circle(this.tempX[i], this.tempY[i], 4);
+      if (mouseIsPressed) {
+        fill(204,15,15,70);
+        circle(this.tempX[i], this.tempY[i], 20);
+      } else {
+        fill(204,15,15);
+        circle(this.tempX[i], this.tempY[i], 4);
+      }
     }
   }
 
-  update2() {}
+  update2() {
+    for (let i = 0; i < this.points.length; i++) {
+      ///evaluate the distance from point to mouse. i could've made the dots follow the mouse directly but this is morre fun
+      let distance = dist(this.points[i].x, this.points[i].y, mouseX, mouseY);
+
+      ////mapping the points' direction/movement
+      let offsetX = map(distance, -200, 200, -30, 30);
+      let offsetY = map(distance, -200, 200, -30, 30);
+
+      push();
+      ////adjust the deviation due to movement
+      translate(-40, -20);
+      fill("rgb(204,15,15)");
+      noStroke();
+      ////refreshing position
+      circle(this.points[i].x + offsetX, this.points[i].y + offsetY, 4);
+      pop();
+    }
+  }
 
   update3() {
+    if (frameCount % 5 === 0) {
+      for (let i = 0; i < this.points.length; i++) {
+        this.tempX[i] = this.originalX[i] + random(-1, 1);
+        this.tempY[i] = this.originalY[i] + random(-1, 1);
+      }
+    }
+    fill("rgb(204,15,15)");
+    noStroke();
+    for (let i = 0; i < this.points.length; i++) {
+      circle(this.tempX[i], this.tempY[i], 1.5);
+    }
+
     for (let i = 0; i < this.points.length; i++) {
       let p = this.points[i];
       let distance = dist(p.x, p.y, mouseX, mouseY);
