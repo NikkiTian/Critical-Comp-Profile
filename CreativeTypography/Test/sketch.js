@@ -37,5 +37,21 @@ var rect = function( p ) { // p could be any variable name
     };
   }
 
+  // Sketch Three
+  var pink = function( p ) { 
+    var x = 100.0; 
+    var y = 100; 
+    var speed = 2.5; 
+    p.setup = function() {
+        const myPinkCanvas = p.createCanvas(400, 200);
+        myPinkCanvas.parent("pinkCanvas");
+    };
+  
+    p.draw = function() {
+      p.background("deeppink");
+    }
+  }
+
   var myp5 = new p5(rect);
   var mySecondp5 = new p5(circle);
+  var myThirdp5 = new p5(pink);

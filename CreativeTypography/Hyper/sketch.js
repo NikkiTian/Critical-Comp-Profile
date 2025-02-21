@@ -1,29 +1,30 @@
 let font;
 
 function preload() {
-  font = loadFont("../Fonts/LeagueScript-Regular.ttf");
+  font = loadFont("../Fonts/Barriecito-Regular.ttf");
 }
 
 function setup() {
   createCanvas(600, 600);
   textAlign(CENTER, CENTER);
 
-  text1 = new HyperEffect("Fatigue", width / 2 - 50, 150);
-  text2 = new HyperEffect("Fatigue", width / 2 - 50, 300);
-  text3 = new HyperEffect("Fatigue", width / 2 - 50, 450);
+  text1 = new HyperEffect("Hyper", width / 2 - 75, 150);
+  text2 = new HyperEffect("Hyper", width / 2 - 75, 330);
+  text3 = new HyperEffect("Hyper", width / 2 - 75, 500);
 }
 
 function draw() {
-  background(0);
+  //background("black");
+  clear();
 
   text1.update1();
-  text1.display();
+  //text1.display();
 
   text2.update2();
   text2.display();
 
   text3.update3();
-  text3.display();
+  text3.display3();
 }
 
 class HyperEffect {
@@ -31,85 +32,68 @@ class HyperEffect {
     this.txt = txt;
     this.x = x;
     this.y = y;
-    this.points = font.textToPoints(this.txt, this.x - 100, this.y, 100, {
+    this.points = font.textToPoints(this.txt, this.x - 100, this.y, 150, {
       sampleFactor: 0.3,
     });
+
     this.originalX = [];
     this.originalY = [];
-    ////the offsets are supposed to be inside the update3() to control indivisual partical movement but im too lazy to move it there
-    this.offsetX = [];
-    this.offsetY = [];
-
     for (let i = 0; i < this.points.length; i++) {
       this.originalX.push(this.points[i].x);
       this.originalY.push(this.points[i].y);
-      
-      this.offsetX.push(random(-10, 10))
-      this.offsetY.push(random(-10, 10))
     }
+    //// for update1(). got this format online, to replicate each content of the target array
+    this.tempX = [...this.originalX];
+    this.tempY = [...this.originalY];
   }
 
   update1() {
-    ////wavy text based on sin function
+    //// refreshes a random offet per 5 frames, meant to reduce frame rate while not influencing the rest of the canvas.
+    if (frameCount % 5 === 0) {
+      for (let i = 0; i < this.points.length; i++) {
+        this.tempX[i] = this.originalX[i] + random(-1, 1);
+        this.tempY[i] = this.originalY[i] + random(-1, 1);
+      }
+    }
+
+    ////draw the shape
+    fill("rgb(204,15,15)");
+    noStroke();
     for (let i = 0; i < this.points.length; i++) {
-      this.points[i].y +=
-        sin(frameCount * 0.1 + this.points[i].x * 0.01) * 0.4;
+      circle(this.tempX[i], this.tempY[i], 4);
     }
   }
 
-  update2() {
-    //// i dont know why but the points are disintegrating thoughout time...
-    //// this is not intentional but it adds to the theme so i didnt fix it
-    ////i would love to know how to fix it though
-    let speed = 0.5;
-    let direction = 1;
-    let range = 10;
-
-    for (let i = 0; i < this.points.length; i++) {
-    ////use of % to divide the shape of the text
-      if (i % 2 == 0) {
-        this.points[i].x += speed * direction;
-      } else {
-        this.points[i].x -= speed * direction;
-      }
-
-      if (this.points[i].x > this.originalX[i] + range) {
-        direction = -1;
-      } else if (this.points[i].x < this.originalX[i] - range) {
-        direction = 1;
-      }
-    }
-  }
+  update2() {}
 
   update3() {
-    let mappedMouse = map(mouseX, 0, width, 0, 1);
-    ////here i also navigated the extent of shake based on the mouseX position
-    let randomValue = map(mouseX, 0, width, 3, 0.5);
-
     for (let i = 0; i < this.points.length; i++) {
-      this.points[i].x =
-        lerp(
-          this.originalX[i] + this.offsetX[i],
-          this.originalX[i],
-          mappedMouse
-        ) + random(-randomValue, randomValue);
-      this.points[i].y =
-        lerp(
-          this.originalY[i] + this.offsetY[i],
-          this.originalY[i],
-          mappedMouse
-        ) + random(-randomValue, randomValue);
+      let p = this.points[i];
+      let distance = dist(p.x, p.y, mouseX, mouseY);
+
+      if (mouseIsPressed && distance < 100) {
+        stroke("rgb(204,15,15)");
+        line(mouseX, mouseY, this.points[i].x, this.points[i].y);
+      } else {
+        p.x = lerp(p.x, this.originalX[i], 0.1);
+        p.y = lerp(p.y, this.originalY[i], 0.1);
+      }
     }
   }
 
   display() {
-    ////this combo makes the texts light up
-    fill("yellow");
-    stroke("white");
-    strokeWeight(0.5);
-    for (let i = 0; i < this.points.length; i++)
-{
-      ellipse(this.points[i].x,this.points[i].y, 3);
+    fill("rgb(204,15,15)");
+    noStroke();
+    for (let i = 0; i < this.points.length; i++) {
+      circle(this.points[i].x, this.points[i].y, 4);
+    }
+  }
+
+  display3() {
+    fill("rgb(204,15,15)");
+    noStroke();
+    for (let i = 0; i < this.points.length; i++) {
+      circle(this.points[i].x, this.points[i].y, 1.5);
     }
   }
 }
