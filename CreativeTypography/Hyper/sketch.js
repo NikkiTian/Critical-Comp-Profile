@@ -16,6 +16,8 @@ function setup() {
 function draw() {
   //background("black");
   clear();
+
+  ////instruction text
   push();
   fill("yellow");
   stroke("red");
@@ -24,14 +26,10 @@ function draw() {
   text("click", 550, 550);
   pop();
 
+  ////maybe i was using too much animations i didn't use display() for this one
   text1.update1();
-  //text1.display();
-
   text2.update2();
-  //text2.display();
-
   text3.update3();
-  //text3.display3();
 }
 
 class HyperEffect {
@@ -43,9 +41,9 @@ class HyperEffect {
       sampleFactor: 0.3,
     });
 
+    ////stores the original position of the points
     this.originalX = [];
     this.originalY = [];
-
     for (let i = 0; i < this.points.length; i++) {
       this.originalX.push(this.points[i].x);
       this.originalY.push(this.points[i].y);
@@ -99,12 +97,15 @@ class HyperEffect {
   }
 
   update3() {
+    ////does the same thing as update1()
     if (frameCount % 5 === 0) {
       for (let i = 0; i < this.points.length; i++) {
         this.tempX[i] = this.originalX[i] + random(-1, 1);
         this.tempY[i] = this.originalY[i] + random(-1, 1);
       }
     }
+
+    ////basic shape
     fill("rgb(204,15,15)");
     noStroke();
     for (let i = 0; i < this.points.length; i++) {
@@ -114,7 +115,7 @@ class HyperEffect {
     for (let i = 0; i < this.points.length; i++) {
       let p = this.points[i];
       let distance = dist(p.x, p.y, mouseX, mouseY);
-
+      ///draw a line from the points to the mouse when pressed
       if (mouseIsPressed && distance < 100) {
         stroke("rgb(204,15,15)");
         line(mouseX, mouseY, this.points[i].x, this.points[i].y);
@@ -122,22 +123,6 @@ class HyperEffect {
         p.x = lerp(p.x, this.originalX[i], 0.1);
         p.y = lerp(p.y, this.originalY[i], 0.1);
       }
-    }
-  }
-
-  display() {
-    fill("rgb(204,15,15)");
-    noStroke();
-    for (let i = 0; i < this.points.length; i++) {
-      circle(this.points[i].x, this.points[i].y, 4);
-    }
-  }
-
-  display3() {
-    fill("rgb(204,15,15)");
-    noStroke();
-    for (let i = 0; i < this.points.length; i++) {
-      circle(this.points[i].x, this.points[i].y, 1.5);
     }
   }
 }
