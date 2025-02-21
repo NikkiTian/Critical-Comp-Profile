@@ -23,7 +23,7 @@ function draw() {
   stroke("red");
   strokeWeight(4);
   textSize(20);
-  text("click", 550, 550);
+  text("press", 550, 550);
   pop();
 
   ////maybe i was using too much animations i didn't use display() for this one
@@ -117,7 +117,7 @@ class HyperEffect {
       let distance = dist(p.x, p.y, mouseX, mouseY);
       ///draw a line from the points to the mouse when pressed
       if (mouseIsPressed && distance < 100) {
-        stroke("rgb(204,15,15)");
+        stroke("yellow");
         line(mouseX, mouseY, this.points[i].x, this.points[i].y);
       } else {
         p.x = lerp(p.x, this.originalX[i], 0.1);
