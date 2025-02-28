@@ -8,8 +8,10 @@ var fatigueEffect = function(p) {
   }
 
   p.setup = function() {
+    console.log("Setting up", p);
     const myFatigueCanvas = p.createCanvas(600, 300);
     myFatigueCanvas.parent("fatigueCanvas");
+    myFatigueCanvas.position(p.windowWidth/2, 200);
     p.textAlign(p.CENTER, p.CENTER);
     txt = new FatigueEffect("Fatigue", p.width / 2 - 140, p.height / 2 + 30);
   }
@@ -78,12 +80,14 @@ var tugEffect = function(p) {
   let txt;
 
   p.preload = function() {
-    font = p.loadFont("Barriecito-Regular.ttf");
+    font = p.loadFont("../Fonts/Barriecito-Regular.ttf");
   }
 
   p.setup = function() {
-    const myTugCanvas = p.createCanvas(600, 500);
+    console.log("Setting up", p);
+    const myTugCanvas = p.createCanvas(600, 450);
     myTugCanvas.parent("tugCanvas");
+    myTugCanvas.position(p.windowWidth/2, 600);
     txt = new TugEffect("Tug", p.random(100, p.width - 200), p.random(100, p.height - 100));
   }
 
@@ -138,7 +142,7 @@ var tugEffect = function(p) {
         this.x -= p.abs(this.speedX);
         this.y -= p.abs(this.speedY);
         if (this.isOutOfBound()) {
-          this.x -= p.abs(this.speedX);
+          this.x += p.abs(this.speedX);
           this.y += p.abs(this.speedY);
         }
       } else if (p.mouseIsPressed && p.mouseX > p.width / 2 && p.mouseY < p.height / 2) {
@@ -178,7 +182,7 @@ var tugEffect = function(p) {
       }
 
       if (p.mouseIsPressed) {
-        p.stroke("blue");
+        p.stroke("yellow");
         for (let i = 0; i < this.points.length; i++) {
           let point = this.points[i];
           let distance = p.dist(point.x, point.y, p.mouseX, p.mouseY);
@@ -189,7 +193,7 @@ var tugEffect = function(p) {
         p.filter(p.BLUR, 0.4);
       }
 
-      p.fill("red");
+      p.fill("white");
       p.noStroke();
       for (let i = 0; i < this.points.length; i++) {
         p.circle(this.tempX[i], this.tempY[i], 3);
@@ -198,6 +202,5 @@ var tugEffect = function(p) {
   }
 };
 
-
-var myp5_1 = new p5(fatigueEffect);
 var myp5_2 = new p5(tugEffect);
+var myp5_1 = new p5(fatigueEffect);
