@@ -1,31 +1,32 @@
 let font;
+let dragLineY;
+let connections = [];
 
 function preload() {
-  font = loadFont("../Fonts/RubikBurned-Regular.ttf");
+  font = loadFont("Creepster-Regular.ttf");
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(600, 300);
   textAlign(CENTER, CENTER);
+  
+  ////initializing an invisible light to perform division
+  dragLineY = height / 2;
 
-  text1 = new StrandedEffect("Stranded", width / 2 - 150, 150);
-  text2 = new StrandedEffect("Stranded", width / 2 - 150, 320);
-  text3 = new StrandedEffect("Stranded", width / 2 - 150, 500);
+  txt = new StrandedEffect("Stranded", width / 2 - 50, height / 2 + 20);
+  txt.generateConnections();
 }
 
 function draw() {
-  //background("rgb(0,0,177)");
+  background(200);
+  txt.update();
+  txt.display();
+}
 
-  clear();
-
-  text1.update1();
-  text1.display();
-
-  text2.update2();
-  text2.display2();
-
-  text3.update3();
-  text3.display3();
+function mouseWheel(event) {
+  ////when the mouse scrolls the line moves accordingly. constrain this line so the points wont be ount of bound
+  dragLineY += event.delta * 0.1;
+  dragLineY = constrain(dragLineY, 50, height - 50);
 }
 
 class StrandedEffect {
@@ -33,132 +34,77 @@ class StrandedEffect {
     this.txt = txt;
     this.x = x;
     this.y = y;
-    this.points = font.textToPoints(this.txt, this.x - 100, this.y, 100, {
-      sampleFactor: 0.4,
-    });
-    this.pointsThree = font.textToPoints(this.txt, this.x - 100, this.y, 100, {
+    this.points = font.textToPoints(this.txt, this.x - 150, this.y, 130, {
       sampleFactor: 0.2,
     });
+
     this.originalX = [];
     this.originalY = [];
-    this.originalXNew = [];
-    this.originalYNew = [];
 
     for (let i = 0; i < this.points.length; i++) {
       this.originalX.push(this.points[i].x);
       this.originalY.push(this.points[i].y);
     }
-
-    ////adding the new original coordinate to suite my third character, since it has different sampleFactor
-    for (let i = 0; i < this.pointsThree.length; i++) {
-      this.originalXNew.push(this.pointsThree[i].x);
-      this.originalYNew.push(this.pointsThree[i].y);
-    }
-
-    ////static random offset for update2()
-    this.offsetX = random(-5, 5);
-    this.offsetY = random(-5, 5);
   }
 
-  update1() {
-    ////rippling effect hinting *drowning*, *wave*, *breathing*
-    ////it looks cool because of my font... the principle is pretty simple im adding a sin value here
-    for (let i = 0; i < this.points.length; i++) {
-      let wave = sin(frameCount * 0.1 + i * 0.5) * 2;
-      this.points[i].y = this.originalY[i] + wave;
+  ////since i wanted to add more lines within the empty shape to create volume, i generated an array sorting random groups of points; which later been used in display() method
+  generateConnections() {
+    connections = [];
+    for (let i = 0; i < this.points.length - 20; i += 5) {
+      let p1 = this.points[i];
+      let p2 = this.points[i + floor(random(1, 20))];
+      connections.push([p1, p2]);
     }
   }
 
-  update2() {
-    ////creating a 3d-like rectangle stacks
-    for (let i = 0; i < this.points.length; i++) {
-      ////scalling blocks based on perspective
-      let scale = map(
-        dist(this.points[i].x, this.points[i].y, width / 2, height / 2),
-        0,
-        width / 2,
-        1.5,
-        0.5
-      );
-      push();
-      fill("rgb(0,0,0)");
-      stroke("blue");
-      strokeWeight(0.3);
-      ////stacking rectangles. i decided to stack 3 rectangles on each dots
-      translate(this.points[i].x, this.points[i].y);
-      for (let i = 0; i < 3; i++) {
-        let size = scale * 5;
-        rect(this.offsetX, this.offsetY, size, size * 5);
-      }
-      pop();
-    }
-  }
-
-  update3() {
-    for (let i = 0; i < this.pointsThree.length - 1; i++) {
-      let currentX = this.pointsThree[i].x;
-      let currentY = this.pointsThree[i].y;
-      let nextX = this.pointsThree[i + 1].x;
-      let nextY = this.pointsThree[i + 1].y;
-      ///calculating the distance from mouse to point
+  update() {
+    for (let i = 0; i < this.points.length - 1; i++) {
+      let currentX = this.points[i].x;
+      let currentY = this.points[i].y;
       let distance = dist(currentX, currentY, mouseX, mouseY);
-      
-      //// connecting each point though lines. There are some lines out of place for the design of this font, but i think they look good on this
-      push();
-      stroke("black");
-      strokeWeight(2.5);
-      line(currentX, currentY, nextX, nextY);
-      pop();
-      
+
+      ////adding my old code that does the point escape from mouse thing
       if (distance < 50) {
-        ////use the angle to decide dots' moving direction... i appologize for using chatGPT for this but i really struggled a lot on using the math for this one
         let angle = atan2(currentY - mouseY, currentX - mouseX);
-
-        ////the closer the point the more it moves
         let escapeDistance = map(distance, 0, 50, 5, 0);
-
-        ////smoothly move the point away from the mouse using lerp, by incorporating sin and cos the dots will be able to animate NORMALLY
         currentX = lerp(currentX, currentX + cos(angle) * escapeDistance, 0.5);
         currentY = lerp(currentY, currentY + sin(angle) * escapeDistance, 0.5);
       } else {
-        //// move back
-        currentX = lerp(currentX, this.originalXNew[i], 0.05);
-        currentY = lerp(currentY, this.originalYNew[i], 0.05);
+        ////implementing the line into use - 
+        let scaleY;
+        if (this.originalY[i] < dragLineY) {
+          // 点在 dragLineY 之上
+          scaleY = map(this.originalY[i], 0, dragLineY, 0.5, 1);
+        } else {
+          // 点在 dragLineY 之下
+          scaleY = map(this.originalY[i], dragLineY, height, 2, 1);
+        }
+
+        currentX = lerp(currentX, this.originalX[i], 0.05);
+        currentY = lerp(currentY, this.originalY[i] * scaleY, 0.05);
       }
-      ///updating the point position after movement
-      this.pointsThree[i].x = currentX;
-      this.pointsThree[i].y = currentY;
+
+      this.points[i].x = currentX;
+      this.points[i].y = currentY;
     }
   }
 
   display() {
-    push();
-    fill("rgb(0, 0, 0)");
-    noStroke();
-    for (let i = 0; i < this.points.length; i++) {
-      rect(this.points[i].x, this.points[i].y, 3);
-    }
-    pop();
-  }
+    stroke(0);
+    strokeWeight(1.5);
 
-  display2() {
-    push();
-    fill("rgb(255, 255, 255)");
-    noStroke();
-    for (let i = 0; i < this.points.length; i++) {
-      rect(this.points[i].x, this.points[i].y, 6, 2);
+    ////connecting points with lines
+    for (let i = 0; i < this.points.length - 1; i++) {
+      let p1 = this.points[i];
+      let p2 = this.points[i + 1];
+      line(p1.x, p1.y, p2.x, p2.y);
     }
-    pop();
-  }
 
-  ////added display3() since i have a differrent sample factor for the third iteration
-  display3() {
-    push();
-    fill("rgb(0,255,223)");
-    noStroke();
-    // for (let i = 0; i < this.pointsThree.length; i++) {
-    //   rect(this.pointsThree[i].x, this.pointsThree[i].y, 3);
-    // }
-    pop();
+    // 画随机生成的连线
+    for (let i = 0; i < connections.length; i++) {
+      let p1 = connections[i][0];
+      let p2 = connections[i][1];
+      line(p1.x, p1.y, p2.x, p2.y);
+    }
   }
 }
