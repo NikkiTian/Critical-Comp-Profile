@@ -10,7 +10,7 @@ var fatigueEffect = function(p) {
     console.log("Setting up", p);
     const myFatigueCanvas = p.createCanvas(600, 300);
     myFatigueCanvas.parent("fatigueCanvas");
-    myFatigueCanvas.position(p.windowWidth / 2, 200);
+    myFatigueCanvas.position(p.windowWidth/2, 200);
     p.textAlign(p.CENTER, p.CENTER);
     txt = new FatigueEffect("Fatigue", p.width / 2 - 140, p.height / 2 + 30);
   }
@@ -73,7 +73,7 @@ var fatigueEffect = function(p) {
   }
 };
 
-////////////////////////////////////////// sketch two: TUG
+////////////////////////////////////////// Sketch Two: Tug Effect
 var tugEffect = function(p) {
   let font;
   let txt;
@@ -86,7 +86,7 @@ var tugEffect = function(p) {
     console.log("Setting up", p);
     const myTugCanvas = p.createCanvas(600, 450);
     myTugCanvas.parent("tugCanvas");
-    myTugCanvas.position(p.windowWidth / 2, 600);
+    myTugCanvas.position(p.windowWidth/2, 600);
     txt = new TugEffect("Tug", p.random(100, p.width - 200), p.random(100, p.height - 100));
   }
 
@@ -184,7 +184,7 @@ var tugEffect = function(p) {
         p.stroke("yellow");
         for (let i = 0; i < this.points.length; i++) {
           let point = this.points[i];
-          // let distance = p.dist(point.x, point.y, p.mouseX, p.mouseY);
+          let distance = p.dist(point.x, point.y, p.mouseX, p.mouseY);
           if (i % 2 === 0) {
             p.line(p.mouseX, p.mouseY, point.x, point.y);
           }
@@ -201,123 +201,5 @@ var tugEffect = function(p) {
   }
 };
 
-////////////////////////////////////////// sketch three: STRANDED
-var strandedEffect = function(p) {
-  let font;
-  let dragLineY;
-  let connections = [];
-
-  p.preload = function() {
-    font = p.loadFont("../Fonts/Creepster-Regular.ttf");
-  }
-
-  p.setup = function() {
-    const myStrandedCanvas = p.createCanvas(600, 300);
-    myStrandedCanvas.parent("strandedCanvas");
-    myStrandedCanvas.position(p.windowWidth / 2, 800);
-    p.textAlign(p.CENTER, p.CENTER);
-    
-    dragLineY = p.height / 2;
-
-    txt = new StrandedEffect("Stranded", p.width / 2 - 50, p.height / 2 + 20);
-    txt.generateConnections();
-  }
-
-  p.draw = function() {
-    p.clear();
-    txt.update();
-    txt.display();
-  }
-
-  p.mouseWheel = function(event) {
-      ////when the mouse scrolls the line moves accordingly. constrain this line so the points wont be ount of bound
-    dragLineY += event.delta * 0.1;
-    dragLineY = p.constrain(dragLineY, 50, p.height - 50);
-  }
-
-  class StrandedEffect {
-    constructor(txt, x, y) {
-      this.txt = txt;
-      this.x = x;
-      this.y = y;
-      this.points = font.textToPoints(this.txt, this.x - 150, this.y, 130, {
-        sampleFactor: 0.2,
-      });
-
-      this.originalX = [];
-      this.originalY = [];
-
-      for (let i = 0; i < this.points.length; i++) {
-        this.originalX.push(this.points[i].x);
-        this.originalY.push(this.points[i].y);
-      }
-    }
-
-  ////since i wanted to add more lines within the empty shape to create volume, i generated
-  // an array sorting random groups of points; which later been used in display() method
-    generateConnections() {
-      connections = [];
-      for (let i = 0; i < this.points.length - 20; i += 5) {
-        let p1 = this.points[i];
-        let p2 = this.points[i + Math.floor(p.random(1, 20))];
-        connections.push([p1, p2]);
-      }
-    }
-
-    update() {
-      for (let i = 0; i < this.points.length - 1; i++) {
-        let currentX = this.points[i].x;
-        let currentY = this.points[i].y;
-        let distance = p.dist(currentX, currentY, p.mouseX, p.mouseY);
-
-        ////adding some of my old code that does the point escape from mouse thing
-        if (distance < 50) {
-          let angle = p.atan2(currentY - p.mouseY, currentX - p.mouseX);
-          let escapeDistance = p.map(distance, 0, 50, 5, 0);
-          currentX = p.lerp(currentX, currentX + p.cos(angle) * escapeDistance, 0.1);
-          currentY = p.lerp(currentY, currentY + p.sin(angle) * escapeDistance, 0.1);
-        }else {
-          ////implementing the line into use - 
-          let scaleY;
-          if (this.originalY[i] < dragLineY) {
-            // when the point is above dragLineY
-            scaleY = p.map(this.originalY[i], 0, dragLineY, 0.5, 1);
-          } else {
-            //when the point is below dragLineY
-            scaleY = p.map(this.originalY[i], dragLineY, height, 2, 1);
-          }
-  
-          currentX = p.lerp(currentX, this.originalX[i], 0.05);
-          currentY = p.lerp(currentY, this.originalY[i] * scaleY, 0.05);
-        }
-
-        this.points[i].x = currentX;
-        this.points[i].y = currentY;
-      }
-
-      this.generateConnections();
-    }
-
-    display() {
-      p.stroke(0);
-      p.strokeWeight(1.5);
-
-      ////connecting points with lines
-    for (let i = 0; i < this.points.length - 1; i++) {
-      let p1 = this.points[i];
-      let p2 = this.points[i + 1];
-      p.line(p1.x, p1.y, p2.x, p2.y);
-    }
-
-    // draw random lines at once
-    for (let i = 0; i < connections.length; i++) {
-      let p1 = connections[i][0];
-      let p2 = connections[i][1];
-      p.line(p1.x, p1.y, p2.x, p2.y);
-    }
-  }
-};
-
-var canvas1 = new p5(fatigueEffect, "fatigueEffect");
-var canvas2 = new p5(tugEffect, "tugEffect");
-var canvas3 = new p5(strandedEffect, "strandedEffect");
+var myp5_2 = new p5(tugEffect);
+var myp5_1 = new p5(fatigueEffect);
