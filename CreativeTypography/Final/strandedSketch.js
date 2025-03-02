@@ -3,24 +3,24 @@ let dragLineY;
 let connections = [];
 
 function preload() {
-  font = loadFont("Creepster-Regular.ttf");
+  font = loadFont("../Fonts/Creepster-Regular.ttf");
 }
 
 function setup() {
-  createCanvas(600, 300);
+  createCanvas(900, 300);
   textAlign(CENTER, CENTER);
   
   ////initializing an invisible light to perform division
   dragLineY = height / 2;
 
-  txt = new StrandedEffect("Stranded", width / 2 - 50, height / 2 + 20);
+  txt = new StrandedEffect("Stranded", width / 2-180, height / 2 + 20);
   txt.generateConnections();
 }
 
 function draw() {
-  background(200);
-  txt.update();
-  txt.display();
+    clear();
+    txt.update();
+    txt.display();
 }
 
 function mouseWheel(event) {
@@ -34,7 +34,7 @@ class StrandedEffect {
     this.txt = txt;
     this.x = x;
     this.y = y;
-    this.points = font.textToPoints(this.txt, this.x - 150, this.y, 130, {
+    this.points = font.textToPoints(this.txt, this.x - 150, this.y, 200, {
       sampleFactor: 0.2,
     });
 
@@ -70,13 +70,13 @@ class StrandedEffect {
         currentX = lerp(currentX, currentX + cos(angle) * escapeDistance, 0.5);
         currentY = lerp(currentY, currentY + sin(angle) * escapeDistance, 0.5);
       } else {
-        ////implementing the line into use - 
+        ////implementing the line into use - arrange the points according to the line
         let scaleY;
         if (this.originalY[i] < dragLineY) {
-          // 点在 dragLineY 之上
+          ////scale the point if it is above dragLineY
           scaleY = map(this.originalY[i], 0, dragLineY, 0.5, 1);
         } else {
-          // 点在 dragLineY 之下
+          ////below
           scaleY = map(this.originalY[i], dragLineY, height, 2, 1);
         }
 
@@ -90,17 +90,17 @@ class StrandedEffect {
   }
 
   display() {
-    stroke(0);
-    strokeWeight(1.5);
+    stroke("#D20103");
+    strokeWeight(2);
 
-    ////connecting points with lines
+    ////connecting points with lines (the outline)
     for (let i = 0; i < this.points.length - 1; i++) {
       let p1 = this.points[i];
       let p2 = this.points[i + 1];
       line(p1.x, p1.y, p2.x, p2.y);
     }
 
-    // 画随机生成的连线
+    ////drawing random lines within the shape (filling)
     for (let i = 0; i < connections.length; i++) {
       let p1 = connections[i][0];
       let p2 = connections[i][1];

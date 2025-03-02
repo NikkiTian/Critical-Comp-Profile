@@ -33,11 +33,36 @@ html, body {
     transform: translate(-50%, -50%);
   }
 
+  .highlight_hyperlink {
+    background-color: blue;
+    padding: 2px 4px;
+    text-decoration: none;
+    color: white;
+}
+
+.highlight_normalText {
+    background-color: yellow;
+    padding: 2px 4px;
+    width: fit-content;
+    display: block;
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    transform: translate(-50%, -50%);
+}
+
+.highlight_hyperlink:hover {
+    background-color: greenyellow;
+    color: red;
+    filter:blur(1px);
+}
+
   .container {
     display: block;
     text-align: center;
   }
+
   #fatigueCanvas, #tugCanvas {
-    margin-bottom: 20px; /* 画布之间的间距 */
+    margin-bottom: 20px;
   }
   

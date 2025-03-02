@@ -1,3 +1,5 @@
+////fatigue... a sense of vertigo
+////added blur effect as wished
 var fatigueEffect = function(p) {
   let font;
   let txt;
@@ -11,7 +13,6 @@ var fatigueEffect = function(p) {
     const myFatigueCanvas = p.createCanvas(600, 300);
     myFatigueCanvas.parent("fatigueCanvas");
     myFatigueCanvas.position(p.windowWidth/2, 200);
-    p.textAlign(p.CENTER, p.CENTER);
     txt = new FatigueEffect("Fatigue", p.width / 2 - 140, p.height / 2 + 30);
   }
 
@@ -29,9 +30,10 @@ var fatigueEffect = function(p) {
       this.points = font.textToPoints(this.txt, this.x - 100, this.y, 150, {
         sampleFactor: 0.3,
       });
-
+      ////recording the original position of the points
       this.originalX = [];
       this.originalY = [];
+      ////setting up random offsets for each points
       this.offsetX = [];
       this.offsetY = [];
 
@@ -47,6 +49,7 @@ var fatigueEffect = function(p) {
       let mappedMouse = p.map(p.mouseX, 0, p.width, 0, 1, true);
       let randomValue = p.map(p.mouseX, 0, p.width, 3, 0.7, true);
 
+      ////lerping the points to their original position based on mouse
       for (let i = 0; i < this.points.length; i++) {
         this.points[i].x =
           p.lerp(this.originalX[i] + this.offsetX[i], this.originalX[i], mappedMouse) +
@@ -59,21 +62,23 @@ var fatigueEffect = function(p) {
 
     display() {
       p.noStroke();
-      let mappedB = p.map(p.mouseY, 0, p.height, 200, 0, true);
-      let mappedR = p.map(p.mouseY, 0, p.height, 255, 100, true);
+      // Adjust the 'r' and 'b' value to change the color of the text
+      let mappedR = p.map(p.mouseY, 0, p.height, 255, 0, true);
+      let mappedB = p.map(p.mouseY, 0, p.height, 0, 255, true);
       let blurV = p.map(p.mouseY, 0, p.height, 0, 5, true);
-
+    
       p.fill(mappedR, 255, mappedB);
       for (let i = 0; i < this.points.length; i++) {
         p.ellipse(this.points[i].x, this.points[i].y, 3);
       }
-
+    
       p.filter(p.BLUR, blurV);
     }
+    
   }
 };
 
-////////////////////////////////////////// Sketch Two: Tug Effect
+//////////////////////////////////////////sketch two: tugEffect//////////////////////////////////////////
 var tugEffect = function(p) {
   let font;
   let txt;
@@ -95,6 +100,7 @@ var tugEffect = function(p) {
     txt.update();
   }
 
+  ////revision: changed 'hyper' into 'tug'
   class TugEffect {
     constructor(txt, x, y) {
       this.txt = txt;
@@ -116,9 +122,15 @@ var tugEffect = function(p) {
         sampleFactor: 0.3,
       });
 
-      this.originalX = this.points.map((p) => p.x);
-      this.originalY = this.points.map((p) => p.y);
+      ////recording the original position of the points
+      this.originalX = [];
+      this.originalY = [];
+      for (let i = 0; i < this.points.length; i++) {
+        this.originalX.push(this.points[i].x);
+        this.originalY.push(this.points[i].y);
+      }
 
+      ////creating temporary array to store the points with random offsets
       this.tempX = [...this.originalX];
       this.tempY = [...this.originalY];
     }
@@ -137,6 +149,9 @@ var tugEffect = function(p) {
     }
 
     update() {
+      ////points 'colliding' with the edges of the canvas as a whole
+
+      ////left top
       if (p.mouseIsPressed && p.mouseX < p.width / 2 && p.mouseY < p.height / 2) {
         this.x -= p.abs(this.speedX);
         this.y -= p.abs(this.speedY);
@@ -144,32 +159,45 @@ var tugEffect = function(p) {
           this.x += p.abs(this.speedX);
           this.y += p.abs(this.speedY);
         }
-      } else if (p.mouseIsPressed && p.mouseX > p.width / 2 && p.mouseY < p.height / 2) {
+      }
+      
+      ////right top
+      else if (p.mouseIsPressed && p.mouseX > p.width / 2 && p.mouseY < p.height / 2) {
         this.x += p.abs(this.speedX);
         this.y -= p.abs(this.speedY);
         if (this.isOutOfBound()) {
           this.x -= p.abs(this.speedX);
           this.y += p.abs(this.speedY);
         }
-      } else if (p.mouseIsPressed && p.mouseX < p.width / 2 && p.mouseY > p.height / 2) {
+      }
+      
+      ////left bottom
+      else if (p.mouseIsPressed && p.mouseX < p.width / 2 && p.mouseY > p.height / 2) {
         this.x -= p.abs(this.speedX);
         this.y += p.abs(this.speedY);
         if (this.isOutOfBound()) {
           this.x += p.abs(this.speedX);
           this.y -= p.abs(this.speedY);
         }
-      } else if (p.mouseIsPressed && p.mouseX > p.width / 2 && p.mouseY > p.height / 2) {
+      }
+      
+      ////right bottom
+      else if (p.mouseIsPressed && p.mouseX > p.width / 2 && p.mouseY > p.height / 2) {
         this.x += p.abs(this.speedX);
         this.y += p.abs(this.speedY);
         if (this.isOutOfBound()) {
           this.x -= p.abs(this.speedX);
           this.y -= p.abs(this.speedY);
         }
-      } else {
+      }
+      
+      ////return to normal collision mode when mouse is not pressed
+      else {
         this.x += this.speedX;
         this.y += this.speedY;
       }
 
+      ////bounce off the edges
       if (this.x < 5 || this.x > p.width - 230) this.speedX *= -1;
       if (this.y < 110 || this.y > p.height - 25) this.speedY *= -1;
 
@@ -180,6 +208,7 @@ var tugEffect = function(p) {
         this.tempY[i] = this.originalY[i] + p.random(-2, 2);
       }
 
+      ////draw lines when mouse is pressed
       if (p.mouseIsPressed) {
         p.stroke("yellow");
         for (let i = 0; i < this.points.length; i++) {
@@ -192,6 +221,7 @@ var tugEffect = function(p) {
         p.filter(p.BLUR, 0.4);
       }
 
+      ////draw the points
       p.fill("white");
       p.noStroke();
       for (let i = 0; i < this.points.length; i++) {
