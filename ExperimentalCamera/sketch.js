@@ -165,3 +165,9 @@ function drawVerticalText(txt, x, y) {
 function gotFaces(results) {
   faces = results;
 }
+
+function keyPressed(){
+  if (key === ' ') { 
+    location.reload(); ////reset the sketch when space is pressed
+  }
+}
