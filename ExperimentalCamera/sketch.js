@@ -1,4 +1,5 @@
 ////code for ml5 function comes from https://docs.ml5js.org/#/reference/facemesh
+////and https://learn.ml5js.org/docs/#/reference/handpose
 let faceMesh;
 let video;
 let options = { maxFaces: 1, refineLandmarks: false, flipHorizontal: true };
