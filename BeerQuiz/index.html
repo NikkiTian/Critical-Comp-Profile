@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beer Preference Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Beer Preference Quiz</h1>
+  
+  <form id="quizForm">
+    <!-- Question 1 -->
+    <div class="question">
+      <label>1. You prefer beer to taste like:</label>
+      <input type="radio" name="taste" value="lager" id="tasteLager"> Lager
+      <input type="radio" name="taste" value="ale" id="tasteAle"> Ale
+    </div>
+    
+    <!-- Question 2 -->
+    <div class="question">
+      <label>2. How much bitterness do you like in your beer?</label>
+      <input type="radio" name="bitterness" value="low" id="bitternessLow"> Low
+      <input type="radio" name="bitterness" value="medium" id="bitternessMedium"> Medium
+      <input type="radio" name="bitterness" value="high" id="bitternessHigh"> High
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+      <label>3. Which aroma do you prefer?</label>
+      <input type="checkbox" name="aroma" value="fruit" id="aromaFruit"> Fruity
+      <input type="checkbox" name="aroma" value="malt" id="aromaMalt"> Malty
+      <input type="checkbox" name="aroma" value="roast" id="aromaRoast"> Roasty (Coffee, Chocolate)
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question">
+      <label>4. What color of beer do you like?</label>
+      <input type="radio" name="color" value="light" id="colorLight"> Light
+      <input type="radio" name="color" value="amber" id="colorAmber"> Amber
+      <input type="radio" name="color" value="dark" id="colorDark"> Dark
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question">
+      <label>5. Do you prefer a higher alcohol content?</label>
+      <input type="radio" name="alcohol" value="low" id="alcoholLow"> Low
+      <input type="radio" name="alcohol" value="medium" id="alcoholMedium"> Medium
+      <input type="radio" name="alcohol" value="high" id="alcoholHigh"> High
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question">
+      <label>6. How do you drink beer?</label>
+      <input type="radio" name="occasion" value="dinner" id="occasionDinner"> With food
+      <input type="radio" name="occasion" value="solo" id="occasionSolo"> Solo
+      <input type="radio" name="occasion" value="party" id="occasionParty"> Party
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question">
+      <label>7. Do you like fizzy beer?</label>
+      <input type="radio" name="fizz" value="yes" id="fizzYes"> Yes
+      <input type="radio" name="fizz" value="no" id="fizzNo"> No
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question">
+      <label>8. Do you like trying new beers?</label>
+      <input type="radio" name="newBeer" value="yes" id="newBeerYes"> Yes
+      <input type="radio" name="newBeer" value="no" id="newBeerNo"> No
+    </div>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+  </form>
+
+  <div id="result">
+    <h2>Your Recommended Beer Style:</h2>
+    <p id="beerStyle"></p>
+    <h3>Examples:</h3>
+    <ul id="beerExamples"></ul>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
