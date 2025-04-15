@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beer Style Quiz - Question 1</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../images/mouseLogo_Blue_noBG - mouse.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+SC:wght@200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <script src="shared.js"></script>
 </head>
 <body>
   <div class="container">
-    <h2>Question 1: How do you like your beer to taste?</h2>
-    <button onclick="saveAndNext('q1', 'crisp', 'q2.html')">Crisp & Clean</button>
-    <button onclick="saveAndNext('q1', 'fruity', 'q2.html')">Fruity & Floral</button>
-    <button onclick="saveAndNext('q1', 'malty', 'q2.html')">Malty & Toasty</button>
+    <h2 class="highlight_normalText">Question 1: How do you like your beer to taste?</h2>
+    <button class="highlight_hyperlink" onclick="saveAndNext('q1', 'crisp', 'q2.html')">Crisp & Clean</button>
+    <button class="highlight_hyperlink" onclick="saveAndNext('q1', 'fruity', 'q2.html')">Fruity & Floral</button>
+    <button class="highlight_hyperlink" onclick="saveAndNext('q1', 'malty', 'q2.html')">Malty & Toasty</button>
   </div>
 </body>
 </html>
