@@ -4,13 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beer Style Quiz - Question 8</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../images/mouseLogo_Blue_noBG - mouse.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+SC:wght@200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <script src="shared.js"></script>
 </head>
 <body>
+  <img src="assets/bubbleBG.gif" class="background-gif" alt="Background GIF">
+  <a href="q7.html" class="back-button">
+    <img src="assets//back.png" alt="Back" />
+  </a>
+  <a href="index.html" class="home-button">
+    <img src="assets/home.png">
+  </a>
   <div class="container">
-    <h2>Question 8: Do you prefer beers with higher alcohol content?</h2>
-    <button onclick="saveAndNext('q8', 'yes', 'result.html')">Yes</button>
-    <button onclick="saveAndNext('q8', 'no', 'result.html')">No</button>
+    <h2 class="highlight_normalText">8/8: Do you prefer beers with higher alcohol content?</h2>
+    <button class="highlight_hyperlink" onclick="saveAndNext('q8', 'yes', 'q9.html')">Yes</button>
+    <button class="highlight_hyperlink" onclick="saveAndNext('q8', 'no', 'q9.html')">No</button>
   </div>
 </body>
 </html>

@@ -26,7 +26,7 @@ function showResult(style) {
     "Saison": ["Saison Dupont", "Boulevard Tank 7", "Ommegang Hennepin"]
   };
   document.getElementById("result").innerHTML =
-    `<h2>Your Best Match: ${style}</h2><p>Brands: </p><ul>` +
+    `<h2 class="highlight_normalText">Your Best Match: ${style}</h2><p>Brands: </p><ul>` +
     brands[style].map(b => `<li>${b}</li>`).join('') + `</ul>`;
 }
 
