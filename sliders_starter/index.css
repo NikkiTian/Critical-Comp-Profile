@@ -1,0 +1,79 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.slider-container {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 15px;
+  pointer-events: none;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; /* hide default web look*/
+  width: 100%;
+  height: 20px;
+  border-radius: 20px;
+  outline: none;
+  transition: 0.2s ease;
+  margin-bottom: 40px;
+}
+
+/* Happiness */
+#happiness-slider {
+  background: #ffd166;
+}
+#happiness-slider:hover {
+  background: #ffbb1c;
+  transform: scale(1.04);
+}
+  
+  /* Anger */
+#anger-slider {
+  background: #ff416d;
+}
+#anger-slider:hover {
+  background: #ff0015;
+  transform: scale(1.04);
+}
+
+/* Anxiety */
+#anxiety-slider {
+  background: hsl(265, 100%, 72%);
+}
+#anxiety-slider:hover {
+  background: #742aff;
+  transform: scale(1.04);
+}
+
+/* Sleepiness */
+#sleepiness-slider {
+  background: #79acff;
+}
+#sleepiness-slider:hover {
+  background: #468dff;
+  transform: scale(1.04);
+}
+
+/* Excitement */
+#excitement-slider {
+  background: #00ffbb;
+}
+#excitement-slider:hover {
+  background: #05c191;
+  transform: scale(1.04);
+}

@@ -4,7 +4,6 @@ function getBeerResult() {
     answers['q' + i] = localStorage.getItem('q' + i);
   }
 
-  // 简单示例逻辑
   if (answers.q3 === 'yes' && answers.q2 === 'high') return showResult("IPA");
   if (answers.q6 === 'yes') return showResult("Stout");
   if (answers.q5 === 'yes') return showResult("Sour");
