@@ -37,10 +37,10 @@ function displayResult(indexInput, answers) {
   const resultElement = document.getElementById("result");
   const heading = document.createElement("h2");
   heading.className = "highlight_normalText";
-  heading.textContent = "Your Best Match: " + style;
+  heading.textContent = "Your Category: " + style;
 
   const paragraph = document.createElement("p");
-  paragraph.textContent = chosenBrand;
+  paragraph.textContent = "You are a " + chosenBrand;
 
   resultElement.innerHTML = "";
   resultElement.appendChild(heading);
