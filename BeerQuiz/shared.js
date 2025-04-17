@@ -4,7 +4,7 @@ function saveAndNext(questionKey, value, nextPage) {
   }
   
 ////specifically for question 9 that determines 
-// the exact beer brand based on... well nothing
+// the exact beer brand based on... well mystery
 function submitAnswer(value) {
   localStorage.setItem('q9', value);
   window.location.href = 'result.html';
