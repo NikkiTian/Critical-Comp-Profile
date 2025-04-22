@@ -1,0 +1,9 @@
+
+{
+    "key1":56,
+    "cats":["steve","al fresco","2"],
+    "testObject":{
+        "key3":"holy",
+        "randomNumber":2.8
+    }
+}
