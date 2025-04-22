@@ -38,4 +38,4 @@ supermarkets and liquor stores.
 
 ## Installation
 
-No need for download - just go [a link](https://nikkitian.github.io/Critical-Comp-Profile/BeerQuiz/index.html)
+No need for download - just go [to the link](https://nikkitian.github.io/Critical-Comp-Profile/BeerQuiz/index.html).
