@@ -44,6 +44,8 @@ body {
   left: 40px;
   top: 40px;
   z-index: 10;
+  background: transparent;
+  border: none;
 }
 
 .back-button img {
