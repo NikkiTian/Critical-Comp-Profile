@@ -1,0 +1,82 @@
+Pale Lager
+- Heineken
+- Budweiser
+- Estrella
+Light, crisp, and super easy to drink. Great for hot days or just chilling.
+
+Pilsner
+- San Miguel
+- Stella Artois
+- Carlsberg 
+Still crisp like a lager, but with more flavor and a little hop kick.
+
+IPA (India Pale Ale)
+- Goose Island IPA
+- lagunitas
+- New Belgium Voodoo Ranger
+Bold and hoppy with a punch of bitterness. Often citrusy, piney, or tropical.
+
+Pale Ale
+- Sierra Nevada Pale Ale
+- Dales
+- Coopers
+Easygoing but flavorful, with just the right touch of hops to keep things interesting.
+
+Wheat
+- Hoegaarden
+- Vedett
+- Blue Moon
+Smooth and hazy, often with hints of citrus or spice. Super refreshing.
+
+Stout
+- Guinness
+- Left Hand Milk Stout
+- Hardywood Park Gingerbread Stout
+Dark, rich, and roasty. Think coffee, chocolate, or dessert vibes.
+
+Sour
+- Crooked Stave Sour Rosé
+- Revolution Freedom of Press
+- Sierra Nevada Wild Little Thing
+Tart and tangy with a fruity twist. Not your average beer—fun and unexpected.
+
+Saison
+- Brooklyn Sorachi Ace
+- Boulevard Tank 7
+- Saison Dupont
+Dry, slightly spicy, and full of character. A bit wild in a good way.
+
+
+heineken.png
+budweiser.png
+san_miguel.png
+
+estrella.png
+stella_artois.png
+peroni.png
+
+goose_island_ipa.png
+lagunitas.png
+new_belgium_voodoo_ranger.png
+
+sierra_nevada_pale_ale.png
+goose_island_ipa.png
+sam_adams_boston_lager.png
+
+hoegaarden.png
+vedett.png
+blue_moon.png
+
+guinness.png
+left_hand_milk_stout.png
+hardywood_park_gingerbread_stout.png
+
+crooked_stave_sour_rosé.png
+revolution_freedom_of_press.png
+sierra_nevada_wild_little_thing.png
+
+brooklyn_sorachi_ace.png  
+boulevard_tank_7.png  
+saison_dupont.png  
+
+
